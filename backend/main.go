@@ -6,16 +6,30 @@ import (
 	"log"
 	"net/http"
 	"os"
+		httpSwagger "github.com/swaggo/http-swagger"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 )
 
+// @title Smart Coffee API
+// @version 1.0
+// @description API
+// @BasePath /api/v1
+
 
 func Routes(configuration *config.Config) *chi.Mux {
 	router := chi.NewRouter()
 
-	
+	router.Get("/swagger/*", httpSwagger.Handler(
+		httpSwagger.URL("http://localhost:5555/swagger/swagger.json"),
+	))
+
+	// Serve swagger.json file
+	router.Get("/swagger/swagger.json", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		http.ServeFile(w, r, "./docs/swagger.json")
+	})
 
 	router.Route("/api/v1", func(r chi.Router) {
 		

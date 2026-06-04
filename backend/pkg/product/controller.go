@@ -20,7 +20,15 @@ func New(configuration *config.Config) *ProductConfig {
 	return &ProductConfig{configuration}
 }
 
-
+// @Summary Create a new product
+// @Tags products
+// @Param body body model.ProductRequest true "Product request"
+// @Success 201 {object} model.ProductResponse
+// @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Failure 403 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /products [post]
 func (c *ProductConfig) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	req := &model.ProductRequest{}
 	if err := render.Bind(r, req); err != nil {
@@ -56,6 +64,13 @@ func (c *ProductConfig) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	render.JSON(w, r, res)
 }
 
+// @Summary Get product by ID
+// @Tags products
+// @Param id path int true "Product ID"
+// @Success 200 {object} model.ProductResponse
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Router /products/{id} [get]
 func (c *ProductConfig) GetProduct(w http.ResponseWriter, r *http.Request) {
 	strId := chi.URLParam(r, "id")
 	id, err := strconv.ParseUint(strId, 10, 32)
@@ -83,7 +98,11 @@ func (c *ProductConfig) GetProduct(w http.ResponseWriter, r *http.Request) {
 	render.JSON(w, r, res)
 }
 
-
+// @Summary Get all products
+// @Tags products
+// @Success 200 {array} model.ProductResponse
+// @Failure 500 {object} map[string]string
+// @Router /products [get]
 func (c *ProductConfig) GetAllProducts(w http.ResponseWriter, r *http.Request) {
 	products, err := c.ProductEntryRepository.FindAll()
 	if err != nil {
@@ -98,6 +117,17 @@ func (c *ProductConfig) GetAllProducts(w http.ResponseWriter, r *http.Request) {
 }
 
 
+// @Summary Update product
+// @Tags products
+// @Param id path int true "Product ID"
+// @Param body body model.ProductUpdateRequest true "Product update request"
+// @Success 200 {object} model.ProductResponse
+// @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Failure 403 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /products/{id} [put]
 func (c *ProductConfig) UpdateProduct(w http.ResponseWriter, r *http.Request) {
 	strId := chi.URLParam(r, "id")
 	id, err := strconv.ParseUint(strId, 10, 32)
@@ -153,6 +183,15 @@ func (c *ProductConfig) UpdateProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 
+// @Summary Delete product
+// @Tags products
+// @Param id path int true "Product ID"
+// @Success 204
+// @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Failure 403 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /products/{id} [delete]
 func (c *ProductConfig) DeleteProduct(w http.ResponseWriter, r *http.Request) {
 	strId := chi.URLParam(r, "id")
 	id, err := strconv.ParseUint(strId, 10, 32)
