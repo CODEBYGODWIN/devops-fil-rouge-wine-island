@@ -45,10 +45,6 @@ func Routes(configuration *config.Config) *chi.Mux {
 	router.Get("/", healthHandler)
 	router.Get("/health", healthHandler)
 
-	if configuration == nil {
-		return router
-	}
-
 	router.Get("/swagger/*", httpSwagger.Handler(
 		httpSwagger.URL("http://localhost:"+os.Getenv("PORT")+"/swagger/swagger.json"),
 	))
@@ -58,6 +54,10 @@ func Routes(configuration *config.Config) *chi.Mux {
 		doc, _ := swag.ReadDoc()
 		w.Write([]byte(doc))
 	})
+
+	if configuration == nil {
+		return router
+	}
 
 	router.Route("/api/v1", func(r chi.Router) {
 		r.Mount("/products", product.Routes(configuration))
