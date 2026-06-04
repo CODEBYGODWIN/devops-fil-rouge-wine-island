@@ -1,21 +1,12 @@
-# Gabarit README — Projet fil rouge DevOps
-
-> Copiez ce contenu dans le `README.md` à la racine du **dépôt Git de votre groupe**.  
-> Complétez chaque section — champs vides = Note 3 incomplète.
-
----
-
-# [Nom du projet]
+# Wine Island
 
 **Équipe :** Paul DECATOIRE, Godwin OBLASSE, Emmanuel YOHORE, Tayvadi PHAISAN, Ronan DUPAS. 
-**Groupe / promo :** B3  
-**Dépôt :** https://github.com/CODEBYGODWIN/DevOpsProject.git
+**Groupe / promo :** Wine Island / INFO B3  
+**Dépôt :** https://github.com/CODEBYGODWIN/DevOpsProject.git 
 
 ---
 
 ## Description du sujet
-
-En 3–5 phrases : que fait l'application ? Qui est l'utilisateur cible ?
 
 L'application est un site vitrine permettant de présenter des projets, 
 des compétences et des informations de contact. L'utilisateur cible est 
