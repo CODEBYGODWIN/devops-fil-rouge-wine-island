@@ -2,6 +2,7 @@ package main
 
 import (
 	"api-go/config"
+	_ "api-go/docs"
 	"api-go/pkg/product"
 	"log"
 	"net/http"
@@ -10,7 +11,14 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/joho/godotenv"
+	httpSwagger "github.com/swaggo/http-swagger"
+	"github.com/swaggo/swag"
 )
+
+// @title Smart Coffee API
+// @version 1.0
+// @description API
+// @BasePath /api/v1
 
 // corsMiddleware handles CORS headers for frontend communication
 func corsMiddleware(next http.Handler) http.Handler {
@@ -40,6 +48,16 @@ func Routes(configuration *config.Config) *chi.Mux {
 	if configuration == nil {
 		return router
 	}
+
+	router.Get("/swagger/*", httpSwagger.Handler(
+		httpSwagger.URL("http://localhost:"+os.Getenv("PORT")+"/swagger/swagger.json"),
+	))
+
+	router.Get("/swagger/swagger.json", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		doc, _ := swag.ReadDoc()
+		w.Write([]byte(doc))
+	})
 
 	router.Route("/api/v1", func(r chi.Router) {
 		r.Mount("/products", product.Routes(configuration))
