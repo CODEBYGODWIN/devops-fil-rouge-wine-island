@@ -34,6 +34,15 @@ func Routes(configuration *config.Config) *chi.Mux {
 	router.Use(middleware.Logger)
 	router.Use(corsMiddleware)
 
+	router.Get("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("OK"))
+	})
+
+	if configuration == nil {
+		return router
+	}
+
 	router.Route("/api/v1", func(r chi.Router) {
 		r.Mount("/products", product.Routes(configuration))
 	})
@@ -42,12 +51,19 @@ func Routes(configuration *config.Config) *chi.Mux {
 }
 
 func main() {
+	godotenv.Load()
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+
 	configuration, err := config.New()
 	if err != nil {
-		log.Fatal("Failed to initialize configuration:", err)
+		log.Println("Failed to initialize database configuration, product routes disabled:", err)
+		configuration = nil
 	}
-	godotenv.Load()
+
 	router := Routes(configuration)
-	log.Println("Server running on http://localhost:" + os.Getenv("PORT"))
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
+	log.Println("Server running on http://localhost:" + port)
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
