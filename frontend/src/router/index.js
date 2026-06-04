@@ -10,15 +10,15 @@ const routes = [
     component: ProductList
   },
   {
+    path: '/products/new',
+    name: 'product-create',
+    component: ProductForm
+  },
+  {
     path: '/products/:id',
     name: 'product-detail',
     component: ProductDetail,
     props: true
-  },
-  {
-    path: '/products/new',
-    name: 'product-create',
-    component: ProductForm
   },
   {
     path: '/products/:id/edit',
