@@ -34,6 +34,13 @@ func Routes(configuration *config.Config) *chi.Mux {
 	router.Use(middleware.Logger)
 	router.Use(corsMiddleware)
 
+	router.Get("/", healthHandler)
+	router.Get("/health", healthHandler)
+
+	if configuration == nil {
+		return router
+	}
+
 	router.Route("/api/v1", func(r chi.Router) {
 		r.Mount("/products", product.Routes(configuration))
 	})
@@ -41,13 +48,42 @@ func Routes(configuration *config.Config) *chi.Mux {
 	return router
 }
 
-func main() {
-	configuration, err := config.New()
-	if err != nil {
-		log.Fatal("Failed to initialize configuration:", err)
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
+}
+
+func hasDatabaseConfig() bool {
+	requiredVariables := []string{"DB_HOST", "DB_USER", "DB_PASSWORD", "DB_NAME", "DB_PORT", "DB_SSLMODE"}
+	for _, variable := range requiredVariables {
+		if os.Getenv(variable) == "" {
+			return false
+		}
 	}
+
+	return true
+}
+
+func main() {
 	godotenv.Load()
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+
+	var configuration *config.Config
+	if hasDatabaseConfig() {
+		var err error
+		configuration, err = config.New()
+		if err != nil {
+			log.Println("Failed to initialize database configuration, product routes disabled:", err)
+			configuration = nil
+		}
+	} else {
+		log.Println("Database environment is incomplete, product routes disabled")
+	}
+
 	router := Routes(configuration)
-	log.Println("Server running on http://localhost:" + os.Getenv("PORT"))
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
+	log.Println("Server running on http://localhost:" + port)
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
