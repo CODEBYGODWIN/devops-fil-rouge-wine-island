@@ -34,18 +34,18 @@ pipeline CI et déploiement Kubernetes.
 
 | Membre | Rôle | Responsabilité principale |
 | ------ | ---- | ------------------------- |
-| | Lead Dev | |
-| | Lead Ops | |
-| | Lead Qualité / CI | |
-| | Lead Doc / Produit | |
+| Emmanuel YOHORE & Axel LOQUET | Lead Dev | |
+| Godwin OBLASSE & Paul DECATOIRE | Lead Ops | |
+| Tayvadi PHAISAN & Alexis BAHUAUD | Lead Qualité / CI | |
+| Ronan DUPAS | Lead Doc / Produit | |
 
 ---
 
 ## Objectifs du fil rouge (3 minimum)
 
-1. Ex. : Avoir une API conteneurisée avec healthcheck d'ici S3.
-2. Ex. : Pipeline CI qui build et push l'image sur chaque merge `main`.
-3. Ex. : Déployer sur cluster kind avec 2 replicas d'ici S4.
+1. Avoir une API conteneurisée avec healthcheck d'ici S3.
+2. Pipeline CI qui build et push l'image sur chaque merge `main`.
+3. Déployer sur cluster kind avec 2 replicas d'ici S4.
 
 ---
 
@@ -65,7 +65,6 @@ pipeline CI et déploiement Kubernetes.
 ## Démarrage local (à compléter au fil des séances)
 
 ```bash
-# À documenter progressivement — pas besoin de tout remplir en S1
 git clone ...
 ```
 
@@ -73,7 +72,7 @@ git clone ...
 
 ## Communication d'équipe
 
-Canal utilisé (Teams, Discord, …) :
+Canal utilisé : Discord
 
 ---
 
