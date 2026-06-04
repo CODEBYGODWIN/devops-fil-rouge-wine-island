@@ -92,9 +92,19 @@ func (c *ProductConfig) GetAllProducts(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	res := make([]*model.ProductResponse, len(products))
+	for i, p := range products {
+		res[i] = &model.ProductResponse{
+			Id:          p.ID,
+			Name:        p.Name,
+			Description: p.Description,
+			ImageUrl:    p.ImageUrl,
+			Price:       p.Price,
+		}
+	}
+
 	render.Status(r, http.StatusOK)
-	w.Header().Set("Content-Type", "application/json")
-	render.JSON(w, r, products)
+	render.JSON(w, r, res)
 }
 
 
