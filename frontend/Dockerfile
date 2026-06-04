@@ -3,7 +3,7 @@ FROM node:24-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci
 
 COPY . .
 
@@ -15,9 +15,7 @@ RUN apk add --no-cache dumb-init
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY --chown=nginx:nginx --from=builder /app/dist /usr/share/nginx/html
-
-USER nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1
