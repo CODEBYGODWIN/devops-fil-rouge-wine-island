@@ -23,10 +23,10 @@ pipeline CI et déploiement Kubernetes.
 
 | Composant | Choix | Justification (1 phrase) |
 | --------- | ----- | -------------------------- |
-| Backend / API | Go (Framework chi) | |
-| Base de données | PostgreSQL | |
-| Front (optionnel) | Vue.js | |
-| Orchestration cible | Compose puis K8s | |
+| Backend / API | Go (Framework chi) | Go et chi permettent de créer une API REST légère, rapide à builder et simple à conteneuriser. |
+| Base de données | PostgreSQL | PostgreSQL est une base relationnelle fiable, adaptée aux données applicatives et facile à lancer en service Docker. |
+| Front (optionnel) | Vue.js | Vue.js permet de construire une interface dynamique tout en gardant une structure front simple pour le projet. |
+| Orchestration cible | Compose puis K8s | Docker Compose assure un démarrage reproductible en local, avec une ouverture possible vers Kubernetes si le périmètre évolue. |
 
 ---
 
@@ -34,10 +34,10 @@ pipeline CI et déploiement Kubernetes.
 
 | Membre | Rôle | Responsabilité principale |
 | ------ | ---- | ------------------------- |
-| Emmanuel YOHORE & Axel LOQUET | Lead Dev | |
-| Godwin OBLASSE & Paul DECATOIRE | Lead Ops | |
-| Tayvadi PHAISAN & Alexis BAHUAUD | Lead Qualité / CI | |
-| Ronan DUPAS | Lead Doc / Produit | |
+| Emmanuel YOHORE & Axel LOQUET | Lead Dev | Développer l'API, structurer le code applicatif et vérifier que les endpoints répondent aux besoins du sujet. |
+| Godwin OBLASSE & Paul DECATOIRE | Lead Ops | Préparer les Dockerfiles, le docker-compose, les variables d'environnement et le diagnostic des services. |
+| Tayvadi PHAISAN & Alexis BAHUAUD | Lead Qualité / CI | Mettre en place le lint, les tests, le build d'image et le push registry dans la pipeline CI/CD. |
+| Ronan DUPAS | Lead Doc / Produit | Maintenir le README, suivre les jalons, clarifier le besoin produit et préparer la trame de soutenance. |
 
 ---
 
@@ -53,7 +53,7 @@ pipeline CI et déploiement Kubernetes.
 
 | Séance | Livrable | Statut (à cocher) |
 | ------ | -------- | ----------------- |
-| S1 | README cadrage | ☐ |
+| S1 | README cadrage | ☑ |
 | S2 | Dockerfile(s) + DB en container | ☐ |
 | S3 | docker-compose + CI vert | ☐ |
 | S4 | Manifests K8s appliqués | ☐ |
@@ -65,7 +65,9 @@ pipeline CI et déploiement Kubernetes.
 ## Démarrage local (à compléter au fil des séances)
 
 ```bash
-git clone ...
+git clone https://github.com/CODEBYGODWIN/DevOpsProject.git
+cd DevOpsProject
+docker compose up -d
 ```
 
 ---
