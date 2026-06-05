@@ -54,8 +54,8 @@ pipeline CI et déploiement Kubernetes.
 | Séance | Livrable | Statut (à cocher) |
 | ------ | -------- | ----------------- |
 | S1 | README cadrage | ☑ |
-| S2 | Dockerfile(s) + DB en container | ☐ |
-| S3 | docker-compose + CI vert | ☐ |
+| S2 | Dockerfile(s) + DB en container | ☑ |
+| S3 | docker-compose + CI vert | ☑ |
 | S4 | Manifests K8s appliqués | ☐ |
 | S5 | Monitoring + post-mortem | ☐ |
 | S6 | Soutenance prête | ☐ |
