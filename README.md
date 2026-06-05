@@ -1,6 +1,8 @@
 # Wine Island
 
-**Équipe :** Alexis BAHUAUD, Paul DECATOIRE, Ronan DUPAS, Godwin OBLASSE, Tayvadi PHAISAN, Emmanuel YOHORE. 
+**Équipe :**  
+Alexis BAHUAUD, Paul DECATOIRE, Ronan DUPAS, Axel LOQUET, Godwin OBLASSE, Tayvadi PHAISAN, Emmanuel YOHORE.
+
 **Groupe / promo :** Wine Island / INFO B3  
 **Dépôt :** https://github.com/CODEBYGODWIN/DevOpsProject.git 
 
@@ -8,14 +10,15 @@
 
 ## Description du sujet
 
-L'application est un site vitrine permettant de présenter des projets, 
-des compétences et des informations de contact. L'utilisateur cible est 
-toute personne souhaitant consulter un portfolio en ligne, comme un 
-recruteur ou un client potentiel. Le backend exposera des endpoints REST 
-en Go (Gin) pour servir les données stockées dans PostgreSQL, tandis que 
-le front Vue.js affichera les contenus de manière dynamique. Le projet 
-servira également de support d'apprentissage DevOps : containerisation, 
-pipeline CI et déploiement Kubernetes.
+L'application Wine Island est une solution de gestion dédiée au suivi d'une 
+sélection de vins, de domaines et d'informations associées. Elle permet de 
+centraliser les données, de les consulter et de les administrer depuis une 
+interface web. L'utilisateur cible est une équipe souhaitant gérer un catalogue 
+de vins de manière simple et structurée. Le backend exposera des endpoints REST 
+en Go avec chi pour servir les données stockées dans PostgreSQL, tandis que le 
+front Vue.js affichera les contenus de manière dynamique. Le projet servira 
+également de support d'apprentissage DevOps : conteneurisation, Docker Compose 
+et pipeline CI/CD.
 
 ---
 
@@ -26,7 +29,8 @@ pipeline CI et déploiement Kubernetes.
 | Backend / API | Go (Framework chi) | Go et chi permettent de créer une API REST légère, rapide à builder et simple à conteneuriser. |
 | Base de données | PostgreSQL | PostgreSQL est une base relationnelle fiable, adaptée aux données applicatives et facile à lancer en service Docker. |
 | Front (optionnel) | Vue.js | Vue.js permet de construire une interface dynamique tout en gardant une structure front simple pour le projet. |
-| Orchestration cible | Compose puis K8s | Docker Compose assure un démarrage reproductible en local, avec une ouverture possible vers Kubernetes si le périmètre évolue. |
+| Orchestration locale | Docker Compose | Docker Compose assure un démarrage reproductible en local avec les services API et base de données. |
+| CI/CD | GitHub Actions ou GitLab CI | La CI/CD permet de vérifier le code, lancer les tests, construire l'image Docker et la publier automatiquement sur un registre. |
 
 ---
 
@@ -58,7 +62,7 @@ pipeline CI et déploiement Kubernetes.
 | S3 | docker-compose + CI vert | ☑ |
 | S4 | Manifests K8s appliqués | ☐ |
 | S5 | Monitoring + post-mortem | ☐ |
-| S6 | Soutenance prête | ☐ |
+| S6 | Soutenance prête | ☑ |
 
 ---
 
@@ -75,9 +79,3 @@ docker compose up -d
 ## Communication d'équipe
 
 Canal utilisé : Discord
-
----
-
-## Participation S1 (optionnel, 2 lignes)
-
-Retour sur le jeu de rôle ou le cas déploiement : une leçon retenue pour le projet.
