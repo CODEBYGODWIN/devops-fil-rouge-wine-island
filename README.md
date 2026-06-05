@@ -2,7 +2,6 @@
 
 **Équipe :**  
 Alexis BAHUAUD, Paul DECATOIRE, Ronan DUPAS, Axel LOQUET, Godwin OBLASSE, Tayvadi PHAISAN, Emmanuel YOHORE.
-
 **Groupe / promo :** Wine Island / INFO B3  
 **Dépôt :** https://github.com/CODEBYGODWIN/DevOpsProject.git 
 
