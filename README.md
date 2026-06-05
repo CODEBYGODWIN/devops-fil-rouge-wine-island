@@ -71,7 +71,6 @@ et pipeline CI/CD.
 ```bash
 git clone https://github.com/CODEBYGODWIN/DevOpsProject.git
 cd DevOpsProject
-docker pull ghcr.io/codebygodwin/devops-fil-rouge-wine-island:05a84ddbdd998bd29c3f48be714456566f65032d
 # Créer un fichier .env à la racine du projet et dans le dossier backend à partir du fichier .env.exemple
 docker compose up -d
 ```
