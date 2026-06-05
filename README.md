@@ -1,6 +1,6 @@
 # Wine Island
 
-**Équipe :** Paul DECATOIRE, Godwin OBLASSE, Emmanuel YOHORE, Tayvadi PHAISAN, Ronan DUPAS. 
+**Équipe :** Alexis BAHUAUD, Paul DECATOIRE, Ronan DUPAS, Axel LOQUET, Godwin OBLASSE, Tayvadi PHAISAN, Emmanuel YOHORE. 
 **Groupe / promo :** Wine Island / INFO B3  
 **Dépôt :** https://github.com/CODEBYGODWIN/DevOpsProject.git 
 
@@ -43,9 +43,9 @@ pipeline CI et déploiement Kubernetes.
 
 ## Objectifs du fil rouge (3 minimum)
 
-1. Avoir une API conteneurisée avec healthcheck d'ici S3.
-2. Pipeline CI qui build et push l'image sur chaque merge `main`.
-3. Déployer sur cluster kind avec 2 replicas d'ici S4.
+1. Développer une API REST en Go pour gérer les contenus du site vitrine et les stocker dans PostgreSQL.
+2. Conteneuriser l'application avec au moins deux services reproductibles : API et base de données.
+3. Mettre en place une chaîne CI/CD qui vérifie le code, lance les tests, construit l'image Docker et la publie sur un registre.
 
 ---
 
