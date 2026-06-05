@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.exemple
+node_modules
+**/node_modules
+dist
+**/dist
+coverage
+**/coverage
+tmp
+**/tmp
+Dockerfile
+README.md
